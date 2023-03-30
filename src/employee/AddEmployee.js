@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEmployeeStart } from './employeeSlice';
+import { useNavigate  } from 'react-router-dom';
 
 function AddEmployee() {
+  const navigate = useNavigate ();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -19,11 +21,11 @@ function AddEmployee() {
       height,
     };
     dispatch(addEmployeeStart(newEmployee));
-    // clear the form after submitting
     setFirstName('');
     setLastName('');
     setBirthday('');
     setHeight(0);
+    navigate("/");
   };
 
   return (

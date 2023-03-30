@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateEmployeeStart } from './employeeSlice';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 
 function UpdateEmployee() {
+  const navigate = useNavigate ();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -13,7 +14,6 @@ function UpdateEmployee() {
   const employee = useSelector((state) =>
     state.employee.employees.find((employee) => employee.employeeId === +id)
   );
-  const isLoading = useSelector((state) => state.employee.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,11 +35,8 @@ function UpdateEmployee() {
       height,
     };
     dispatch(updateEmployeeStart(updatedEmployee));
+    navigate("/");
   };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   if (!employee) {
     return <p>Employee not found.</p>;
