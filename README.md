@@ -68,3 +68,57 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+There is an api https://reactapi.bsite.net/api/Employee/ to process the list of employees. And several users allegedly interact with it.
+you need to do the usual processing of crud operations using redux. filtering, sorting. each api request has a delay of 5-6 seconds.
+The user should not see any delays in the api, except for the first download. 
+make 5 buttons: 
+examples:
+curl -X 'GET' \
+  'https://reactapi.bsite.net/api/Employee' \
+  -H 'accept: text/plain'
+
+curl -X 'POST' \
+  'https://reactapi.bsite.net/api/Employee' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "employeeId": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "birthday": "2023-03-26T15:56:30.328Z",
+  "height": 0
+}'
+
+curl -X 'PUT' \
+  'https://reactapi.bsite.net/api/Employee' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "employeeId": 0,
+  "firstName": "string",
+  "lastName": "string",
+  "birthday": "2023-03-27T10:43:13.607Z",
+  "height": 0
+}'
+
+curl -X 'GET' \
+  'https://reactapi.bsite.net/api/Employee/1' \
+  -H 'accept: */*'
+
+curl -X 'DELETE' \
+  'https://reactapi.bsite.net/api/Employee/1' \
+  -H 'accept: */*'
+
+EmployeeModel{
+employeeId	integer($int32)
+nullable: true
+firstName	string
+nullable: true
+lastName	string
+nullable: true
+birthday	string($date-time)
+nullable: true
+height	integer($int32)
+}
+Please write only codes all files and with redux, @reduxjs/toolkit, react-router-dom, react-redux, react-saga
